@@ -1,0 +1,12 @@
+# Project exclude paths
+.gradle
+build
+.idea
+course-info.yaml
+course-remote-info.yaml
+lesson-info.yaml
+Sold
+Menu, please
+Errors
+Arrangement
+Tickets
