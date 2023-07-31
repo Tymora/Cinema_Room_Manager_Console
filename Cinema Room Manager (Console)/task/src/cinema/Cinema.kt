@@ -20,32 +20,32 @@ fun viewPrice (rows: Int, sits: Int, room: Array<CharArray>){
     when {
         rows * sits < 60 -> {
             println("Ticket price: $10")
-            room[numrow-1][numsit-1] = 'B'
+            room[numsit-1][numrow-1] = 'B'
             printCinema(rows, sits, room)
             //println("Total income:")
             //println("$${rows * sits *10}")
         }
         rows%2 == 0 -> {
-            if (numrow * numsit <= rows/2 * sits){
-                println("Ticket price: $8")
-                room[numrow-1][numsit-1] = 'B'
+            if (numrow  <= rows/2){
+                println("Ticket price: $10")
+                room[numsit-1][numrow-1] = 'B'
                 printCinema(rows, sits, room)
 
             }else {
-                println("Ticket price: $10")
-                room[numrow-1][numsit-1] = 'B'
+                println("Ticket price: $8")
+                room[numsit-1][numrow-1] = 'B'
                 printCinema(rows, sits, room)
             }
             //println("$${((rows/2) * sits * 10) + (rows/2) * sits * 8}")
         }
         else -> {
-            if (numrow * numsit <= rows/2 * sits){
-                println("Ticket price: $8")
-                room[numrow-1][numsit-1] = 'B'
+            if (numrow  <= rows/2){
+                println("Ticket price: $10")
+                room[numsit-1][numrow-1] = 'B'
                 printCinema(rows, sits, room)
             } else {
-                println("Ticket price: $10")
-                room[numrow-1][numsit-1] = 'B'
+                println("Ticket price: $8")
+                room[numsit-1][numrow-1] = 'B'
                 printCinema(rows, sits, room)
             }
             //println("Total income:")
@@ -60,7 +60,7 @@ fun printCinema(rows: Int, sits: Int, room: Array<CharArray>) {
     val rowsLen = rows.toString().length + 1 // Размер расстояния между элементами сетки
     println("Cinema:")
     print("".padStart(rowsLen))
-    for (i in 1 .. rows) {
+    for (i in 1 .. sits) {
         print(i.toString().padStart(sitsLen))
     }
     println()
@@ -68,9 +68,10 @@ fun printCinema(rows: Int, sits: Int, room: Array<CharArray>) {
     for (row in 1..rows) {
         print(row.toString().padStart(rowsLen))
         for (sit in 1..sits) {
-            print(room[row - 1][sit - 1].toString().padStart(sitsLen))
+            print(room[sit - 1][row - 1].toString().padStart(sitsLen))
         }
         println()
     }
+
 }
 
