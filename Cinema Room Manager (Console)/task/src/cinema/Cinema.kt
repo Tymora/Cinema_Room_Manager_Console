@@ -7,11 +7,21 @@ fun main() {
     println("Enter the number of seats in each row:")
     val sits = readln().toInt()
     val room = Array(sits) { CharArray(rows) { 'S' } }
-    printCinema(rows, sits, room)
-    viewPrice(rows, sits, room)
-
+    while (true){
+        println("""
+            1. Show the seats
+            2. Buy a ticket
+            0. Exit
+        """.trimIndent())
+        when(readln().toInt()){
+            1 -> printCinema(rows, sits, room)
+            2 -> viewPrice(rows, sits, room)
+            0 -> break
+        }
+    }
 }
-fun viewPrice (rows: Int, sits: Int, room: Array<CharArray>){
+
+fun viewPrice(rows: Int, sits: Int, room: Array<CharArray>) {
     println("Enter a row number:")
     val numrow = readln().toInt()
     println("Enter a seat number in that row:")
@@ -20,33 +30,28 @@ fun viewPrice (rows: Int, sits: Int, room: Array<CharArray>){
     when {
         rows * sits < 60 -> {
             println("Ticket price: $10")
-            room[numsit-1][numrow-1] = 'B'
-            printCinema(rows, sits, room)
+            room[numsit - 1][numrow - 1] = 'B'
             //println("Total income:")
             //println("$${rows * sits *10}")
         }
-        rows%2 == 0 -> {
-            if (numrow  <= rows/2){
+        rows % 2 == 0 -> {
+            if (numrow <= rows / 2) {
                 println("Ticket price: $10")
-                room[numsit-1][numrow-1] = 'B'
-                printCinema(rows, sits, room)
+                room[numsit - 1][numrow - 1] = 'B'
 
-            }else {
+            } else {
                 println("Ticket price: $8")
-                room[numsit-1][numrow-1] = 'B'
-                printCinema(rows, sits, room)
+                room[numsit - 1][numrow - 1] = 'B'
             }
             //println("$${((rows/2) * sits * 10) + (rows/2) * sits * 8}")
         }
         else -> {
-            if (numrow  <= rows/2){
+            if (numrow <= rows / 2) {
                 println("Ticket price: $10")
-                room[numsit-1][numrow-1] = 'B'
-                printCinema(rows, sits, room)
+                room[numsit - 1][numrow - 1] = 'B'
             } else {
                 println("Ticket price: $8")
-                room[numsit-1][numrow-1] = 'B'
-                printCinema(rows, sits, room)
+                room[numsit - 1][numrow - 1] = 'B'
             }
             //println("Total income:")
             //println("$${((rows/2) * sits * 10) + ((rows/2 + 1) * sits * 8)}")
@@ -60,7 +65,7 @@ fun printCinema(rows: Int, sits: Int, room: Array<CharArray>) {
     val rowsLen = rows.toString().length + 1 // Размер расстояния между элементами сетки
     println("Cinema:")
     print("".padStart(rowsLen))
-    for (i in 1 .. sits) {
+    for (i in 1..sits) {
         print(i.toString().padStart(sitsLen))
     }
     println()
@@ -74,4 +79,3 @@ fun printCinema(rows: Int, sits: Int, room: Array<CharArray>) {
     }
 
 }
-
